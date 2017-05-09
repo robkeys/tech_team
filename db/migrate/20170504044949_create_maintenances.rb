@@ -1,6 +1,7 @@
 class CreateMaintenances < ActiveRecord::Migration[5.0]
   def change
     create_table :maintenances do |t|
+      t.integer :item_id
       t.integer :tech_id
 
       t.text :notes

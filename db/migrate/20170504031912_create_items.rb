@@ -4,8 +4,8 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.integer :category_id
       t.integer :vendor_id
       t.integer :manufacturer_id
-      t.integer :maintenance_id
       t.integer :site_id
+      t.integer :staff_id
 
       t.integer :cost
       t.date :disposal_date
