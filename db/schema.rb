@@ -10,25 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504031912) do
-
-  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.date     "disposal_date"
-    t.string   "disposal_method"
-    t.text     "disposal_reason",   limit: 65535
-    t.string   "domain"
-    t.string   "domain_name"
-    t.string   "model"
-    t.text     "note",              limit: 65535
-    t.string   "serial"
-    t.integer  "size"
-    t.date     "warranty_date"
-    t.string   "warranty_email"
-    t.string   "warranty_num"
-    t.string   "warranty_provider"
-    t.string   "warranty_phone"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
