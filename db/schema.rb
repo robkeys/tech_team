@@ -10,6 +10,101 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170509183525) do
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "name"
+    t.boolean "is_portable_device"
+    t.string  "size_modifier"
+  end
+
+  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "customer_number"
+    t.string   "name"
+    t.string   "rep_name_first"
+    t.string   "rep_name_last"
+    t.text     "notes",           limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "contact_joins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "contact_id"
+    t.string  "contactable_type"
+    t.integer "contactable_id"
+    t.index ["contactable_type", "contactable_id"], name: "index_contact_joins_on_contactable_type_and_contactable_id", using: :btree
+  end
+
+  create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
+    t.string   "email"
+    t.boolean  "is_address"
+    t.boolean  "is_email"
+    t.boolean  "is_fax"
+    t.boolean  "is_phone"
+    t.boolean  "is_primary"
+    t.string   "phone"
+    t.string   "type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "category_id"
+    t.integer  "vendor_id"
+    t.integer  "manufacturer_id"
+    t.integer  "site_id"
+    t.integer  "staff_id"
+    t.integer  "cost"
+    t.date     "disposal_date"
+    t.string   "disposal_method"
+    t.text     "disposal_reason",   limit: 65535
+    t.string   "domain"
+    t.string   "domain_name"
+    t.string   "ipv4"
+    t.string   "ipv6"
+    t.string   "mac_address"
+    t.string   "model"
+    t.text     "note",              limit: 65535
+    t.string   "serial"
+    t.integer  "size"
+    t.date     "warranty_date"
+    t.string   "warranty_email"
+    t.string   "warranty_num"
+    t.string   "warranty_provider"
+    t.string   "warranty_phone"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "maintenances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "item_id"
+    t.integer  "tech_id"
+    t.text     "notes",       limit: 65535
+    t.string   "part"
+    t.string   "part_serial"
+    t.string   "type"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "parent_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "staff", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.boolean  "is_tech"
+    t.string   "name"
+    t.text     "notes",      limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
 end

@@ -1,0 +1,39 @@
+<div class='items index'>
+  <h1> Header </h1>
+
+  <%=  form_tag items_path, :method => 'get' do %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag 'Filter', :name => nil %>
+    </p>
+  <% end %>
+
+  <table class='listing' summary='Item list'>
+    <tr class='header'>
+      <th><%= sortable 'id' %></th>
+      <th><%= sortable 'cost' %></th>
+      <th><%= sortable 'domain' %></th>
+      <th><%= sortable 'domain_name' %></th>
+      <th><%= sortable 'ipv4' %></th>
+      <th><%= sortable 'mac_address' %></th>
+      <th><%= sortable 'make' %></th>
+      <th><%= sortable 'serial' %></th>
+    </tr>
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= number_to_currency( item.cost ) %></td>
+      <td><%= item.domain %></td>
+      <td><%= item.domain_name %></td>
+      <td><%= item.ipv4 %></td>
+      <td><%= item.mac_address %></td>
+      <td><%= item.model %></td>
+      <td><%= item.serial %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <%= will_paginate @items %>
+</div>

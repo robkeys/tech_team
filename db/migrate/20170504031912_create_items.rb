@@ -14,7 +14,7 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.string :domain
       t.string :domain_name
       t.string :ipv4
-      t.string :ipv2
+      t.string :ipv6
       t.string :mac_address
       t.string :model
       t.text :note
@@ -28,5 +28,10 @@ class CreateItems < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :items, :category_id
+    add_index :items, :vendor_id
+    add_index :items, :manufacturer_id
+    add_index :items, :site_id
+    add_index :items, :staff_id
   end
 end
