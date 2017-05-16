@@ -1,25 +1,137 @@
+// Colors - http://paletton.com/#uid=43A0u0kllll26xq9pllzQllUIac
+$primary: #2B4C6F;	        // Main Primary color */
+$primary-light: #A0A5AA;
+$primary-grey: #515F6F;
+$primary-mid: #073A6F;
+$primary-dark: #011A35;
+
+$secondary: #AA9039;	    // Main Secondary color */
+$secondary-light: #FFFBEE;
+$secondary-grey: #AA9F78;
+$secondary-mid: #AA8300;
+$secondary-dark: #513F00;
+
+$tertiary: #AA5F39;	        // Main Tertiary color */
+$tertiary-light: #FFF4EE;
+$tertiary-grey: #AA8978;
+$tertiary-mid: #AA3900;
+$tertiary-dark: #511B00;
+
+$complement: #AA7D39;	    // Main Complement color */
+$complement-light: #FFF8EE;
+$complement-grey: #AA9678;
+$complement-mid: #AA6600;
+$complement-dark: #513100;
+
+
+
+
+html, body, form, fieldset, table, tr, td, img {
+  margin: 0;
+  padding: 0;
+  font: 100%/150% arial,helvetica,sans-serif;
+  color: $complement-grey;
+}
+
+input, button, select, textarea, optgroup, option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+html {
+  background-color: $primary;
+}
+
+body {
+  margin: 0 1% 0 1%;
+}
+
+p {
+  margin: 0 0 .25em 0;
+}
+
+a {
+  color: $secondary-mid;
+
+  &:visited {
+    color: $secondary-mid;
+  }
+
+  &:hover {
+    color: $secondary-light;
+  }
+}
+
+label {
+  display: block;
+}
+
+input, select {
+  height: 20px;
+  box-sizing: border-box;
+  background-color: $complement-light;
+  border: 1px solid $complement-dark;
+  display: block;
+}
+
 table {
+  margin: 0 0 0 0;
   border-collapse: collapse;
+  border: 1px solid $primary-dark;
   width: 100%;
 }
 
 table tr td, table tr th {
-  border: 1px solid black;
-  padding: 1px;
+  text-align: left;
+  padding: 1px 3px 1px 3px;
+  color: $tertiary-dark
 }
 
-th .current {
-  padding-right: 18px;
-  background-position: right center;
-  background-repeat: no-repeat;
-  background-size: 1em 1em;
+tr {
+  border-bottom: 1px solid $primary-dark;
 
-  &.ASC {
-    background-image: image-url('sort_arrow_up.png');
+  &:nth-child(odd) {
+    background-color: $secondary-light;
   }
 
-  &.DESC {
-    background-image: image-url('sort_arrow_down.png');
+  &:nth-child(even) {
+    background-color: $primary-light;
+  }
+}
+
+.flex-form {
+  align-items: flex-end;
+  background-color: $tertiary;
+  border-left: 1px solid $primary;
+  border-right: 1px solid $primary;
+  color: $primary-dark;
+  display: flex;/* Makes this div contain its floats */
+  justify-content: flex-start;
+
+  a {
+    color: $primary-dark;
+
+    &:visited {
+      color: $primary-dark;
+    }
+
+    &:hover {
+      color: $primary-mid;
+    }
   }
 
+  .flex-form-item {
+    flex: 0 0 20%;
+    margin: 5px;
+  }
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }

@@ -1,0 +1,37 @@
+<div id="filterrific_results">
+
+
+
+  <table class='listing' summary='Item list'>
+    <tr class='header'>
+      <th>ID</th>
+      <th>Cost</th>
+      <th>Domain</th>
+      <th>Name</th>
+      <th>ipv4</th>
+      <th>Mac Address</th>
+      <th>Model</th>
+      <th>Serial</th>
+    </tr>
+    <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= number_to_currency( item.cost ) %></td>
+          <td><%= item.domain %></td>
+          <td><%= item.domain_name %></td>
+          <td><%= item.ipv4 %></td>
+          <td><%= item.mac_address %></td>
+          <td><%= item.model %></td>
+          <td><%= item.serial %></td>
+        </tr>
+    <% end %>
+  </table>
+
+  <div class="float-left"><%= will_paginate @items %></div>
+  <div class="float-right"><p><%= page_entries_info @items %></p></div>
+
+
+
+</div>
+
+
