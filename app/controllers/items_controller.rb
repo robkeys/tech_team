@@ -1,11 +1,9 @@
 class ItemsController < ApplicationController
 
   def index
-    # global variable to sanitize params to prevent SQL injection.
-    @index_params = params.permit(:page, :sort, :direction, :search)
     @filterrific = initialize_filterrific(Item, params[:filterrific],
       select_options: { sorted_by: Item.options_for_sorted_by }) or return
-    @items = @filterrific.find.paginate(:per_page => 5, :page => @index_params[:page])
+    @items = @filterrific.find.paginate(:per_page => 5, :page => params[:page])
 
     respond_to do |format|
       format.html
@@ -21,10 +19,17 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = Item.new({:ipv4 => 'DHCP'})
   end
 
   def create
+    @item = Item.new(item_params)
+    if @item.save
+      flash[:notice] = 'Inventory item created successfully.'
+      redirect_to(items_path)
+    else
+      render('new')
+    end
   end
 
   def edit
@@ -34,6 +39,7 @@ class ItemsController < ApplicationController
   end
 
   def delete
+    @item = Item.find(params[:id])
   end
 
   def destroy
@@ -41,12 +47,10 @@ class ItemsController < ApplicationController
 
   private
 
-  def sort_col
-    Item.column_names.include?(params[:sort]) ? params[:sort] : 'id'
-  end
-
-  def sort_dir
-    %w[ASC DESC].include?(params[:direction]) ? params[:direction] : 'ASC'
+  def item_params
+    params.require(:item).permit(:cost, :disposal_date, :disposal_method, :disposal_reason, :domain, :domain_name,
+                                 :ipv4, :ipv6, :mac_address, :model, :note, :size, :serial, :warranty_date,
+                                 :warranty_email, :warranty_num, :warranty_provider, :warranty_phone)
   end
 
 end

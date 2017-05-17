@@ -1,5 +1,13 @@
 <div class="items index">
-  <h1> Inventory </h1>
+
+  <div class="action new">
+    <%= link_to new_item_path do %>
+      Add New
+      <%= image_tag('add.png') %>
+    <% end %>
+  </div>
+
+  <br>
 
   <%=  form_for_filterrific @filterrific do |f| %>
       <div class="flex-form">
@@ -11,7 +19,7 @@
           <label for="filterrific_sorted_by">Sorted by</label>
           <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
         </div>
-        <div class="flex-form-item">
+        <div class="flex-form-item submit">
           <%= link_to('Reset filters', reset_filterrific_url) %>
           <%= render_filterrific_spinner %>
         </div>

@@ -24,8 +24,6 @@ $complement-mid: #AA6600;
 $complement-dark: #513100;
 
 
-
-
 html, body, form, fieldset, table, tr, td, img {
   margin: 0;
   padding: 0;
@@ -48,6 +46,12 @@ body {
   margin: 0 1% 0 1%;
 }
 
+footer {
+  font-size: x-small;
+  position: fixed;
+  bottom: 0;
+}
+
 p {
   margin: 0 0 .25em 0;
 }
@@ -68,12 +72,17 @@ label {
   display: block;
 }
 
-input, select {
+input, select, textarea {
   height: 20px;
+  width: 100%;
   box-sizing: border-box;
   background-color: $complement-light;
   border: 1px solid $complement-dark;
   display: block;
+}
+
+textarea {
+  height: 200px;
 }
 
 table {
@@ -86,11 +95,11 @@ table {
 table tr td, table tr th {
   text-align: left;
   padding: 1px 3px 1px 3px;
-  color: $tertiary-dark
+  color: $tertiary-dark;
+  border-bottom: 1px solid $primary-dark;
 }
 
 tr {
-  border-bottom: 1px solid $primary-dark;
 
   &:nth-child(odd) {
     background-color: $secondary-light;
@@ -101,13 +110,45 @@ tr {
   }
 }
 
+.header img{
+  float: left;
+}
+
+.header h1 {
+  font-size: 3em;
+  position: relative;
+  top: 10px;
+  left: 5px;
+}
+
+.action {
+  margin-right: 1px;
+
+  &.new { float: right; }
+  &.back { float: left; }
+
+  a {
+    text-decoration: none;
+    color: $complement-grey;
+
+    &:visited {
+      color: $complement-grey;
+    }
+
+    &:hover {
+      color: $complement-grey;
+    }
+  }
+}
+
 .flex-form {
-  align-items: flex-end;
+  align-items: flex-start;
   background-color: $tertiary;
   border-left: 1px solid $primary;
   border-right: 1px solid $primary;
   color: $primary-dark;
   display: flex;/* Makes this div contain its floats */
+  flex-flow: row wrap;
   justify-content: flex-start;
 
   a {
@@ -123,8 +164,16 @@ tr {
   }
 
   .flex-form-item {
-    flex: 0 0 20%;
+    // background-color: #2B4C6F;
     margin: 5px;
+  }
+
+  .resize {
+    flex-grow: 2;
+  }
+
+  .submit {
+    align-self: flex-end;
   }
 }
 
