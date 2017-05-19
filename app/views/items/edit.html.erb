@@ -1,2 +1,31 @@
-<h1>Items#edit</h1>
-<p>Find me in app/views/items/edit.html.erb</p>
+<div class="items edit">
+
+  <div class="action back">
+    <%= link_to items_path do %>
+        <%= image_tag('left-arrow.png') %>
+        Return to List
+    <% end %>
+  </div>
+
+  <br>
+
+  <div class="relative-container">
+  <%= form_for @item do |f| %>
+    <% readable_only = false %>
+    <div class="flex-form">
+
+      <%= render(:partial => 'form', :locals => {:f => f, :readable_only => readable_only}) %>
+
+      <div class="flex-form-item submit fill-row">
+        <%= f.submit("Update Inventory") %>
+      </div>
+    </div>
+
+    <div class="action lock">
+      <%= display_lock(readable_only, item_path(params[:id])) %>
+    </div>
+
+  <% end %>
+  </div>
+
+</div>

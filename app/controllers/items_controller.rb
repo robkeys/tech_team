@@ -9,13 +9,10 @@ class ItemsController < ApplicationController
       format.html
       format.js
     end
-
-    # @items = Item.search(
-    #    @index_params[:search]).order("#{sort_col} #{sort_dir}")
-    #             .paginate(:per_page => 5, :page => @index_params[:page])
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -33,16 +30,27 @@ class ItemsController < ApplicationController
   end
 
   def edit
-  end
-
-  def update
-  end
-
-  def delete
     @item = Item.find(params[:id])
   end
 
+  def update
+    @item = Item.find(params[:id])
+    if @item.update_attributes(item_params)
+      flash[:notice] = 'Item updated successfully.'
+      redirect_to(item_path(params[:id]))
+    else
+      render('edit')
+    end
+  end
+
   def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      flash[:notice] = "Inventory item number '#{@item.id}' deleted."
+      redirect_to(items_path)
+    else
+      flash[:notice] = "Inventory item number '#{@item.id}' could not be deleted."
+    end
   end
 
   private

@@ -79,11 +79,17 @@ ActiveRecord::Schema.define(version: 20170509183525) do
     t.string   "warranty_phone"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.index ["category_id"], name: "index_items_on_category_id", using: :btree
+    t.index ["manufacturer_id"], name: "index_items_on_manufacturer_id", using: :btree
+    t.index ["site_id"], name: "index_items_on_site_id", using: :btree
+    t.index ["staff_id"], name: "index_items_on_staff_id", using: :btree
+    t.index ["vendor_id"], name: "index_items_on_vendor_id", using: :btree
   end
 
   create_table "maintenances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id"
     t.integer  "tech_id"
+    t.date     "date"
     t.text     "notes",       limit: 65535
     t.string   "part"
     t.string   "part_serial"

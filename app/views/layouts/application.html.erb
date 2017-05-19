@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+
 <html>
   <head>
+
     <title>TechTeam</title>
     <%= csrf_meta_tags %>
 
@@ -9,11 +11,28 @@
   </head>
 
   <body>
-    <div class="header">
-      <%= image_tag('cube.png', :size => '42x42') %>
-      <h1>Inventory</h1>
+    <div class="relative-container">
+
+      <% flash.each do |type, content| %>
+        <% if content.respond_to?('each')
+             content.each do |item| %>
+          <%= render 'layouts/alert', type: type, content: item %>
+            <% end %>
+        <% else %>
+          <%= render 'layouts/alert', type: type, content: content %>
+            <% end %>
+      <% end %>
+
+
+      <div class="header">
+        <%= image_tag('cube.png', :size => '42x42') %>
+        <h1>Inventory</h1>
+      </div>
+
     </div>
+
     <%= yield %>
+
   </body>
 
   <footer>

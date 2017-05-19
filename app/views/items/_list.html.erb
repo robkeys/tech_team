@@ -22,7 +22,11 @@
       <td><%= item.ipv4 %></td>
       <td><%= item.mac_address %></td>
       <td><%= item.model %></td>
-      <td class="action"></td>
+      <td class="action">
+        <%= link_to(image_tag('edit.png', :title => 'View/Edit'), item_path(item)) %>
+        <%= link_to(image_tag('garbage.png', :title => 'Delete'), item_path(item),
+                    method: :delete, data: {confirm: 'Are you sure?'}) %>
+      </td>
     </tr>
     <% end %>
   </table>

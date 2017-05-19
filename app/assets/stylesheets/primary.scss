@@ -52,6 +52,11 @@ footer {
   bottom: 0;
 }
 
+h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
 p {
   margin: 0 0 .25em 0;
 }
@@ -70,6 +75,11 @@ a {
 
 label {
   display: block;
+
+  &.has-action {
+    float: left;
+    display: inline-block;
+  }
 }
 
 input, select, textarea {
@@ -81,9 +91,15 @@ input, select, textarea {
   display: block;
 }
 
+input[type=submit] {
+  border-radius: 3px;
+  height: 25px;
+}
+
 textarea {
   height: 200px;
 }
+
 
 table {
   margin: 0 0 0 0;
@@ -110,15 +126,36 @@ tr {
   }
 }
 
-.header img{
-  float: left;
+.hidden {
+  display: none;
 }
 
-.header h1 {
+.header {
+  position: relative;
+  padding-bottom: 12px;
+
+  img{
+    float: left;
+  }
+
+  h1 {
   font-size: 3em;
   position: relative;
   top: 10px;
   left: 5px;
+  }
+}
+
+.alert {
+  padding: .5em 1em;
+  position: absolute;
+  border: 1px solid $complement-dark;
+  background-color: $tertiary-light;
+  color: $complement-dark;
+  top: 37%;
+  left: 68%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .action {
@@ -126,6 +163,20 @@ tr {
 
   &.new { float: right; }
   &.back { float: left; }
+  &.in-label {
+    font-size: .75em;
+    text-align: right;
+    vertical-align: baseline;
+  }
+  &.lock {
+    position: absolute;
+    margin: 1px 3px 0 0;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  img { vertical-align: text-top}
 
   a {
     text-decoration: none;
@@ -141,6 +192,11 @@ tr {
   }
 }
 
+.relative-container {
+  position: relative;
+  width: 100%;
+}
+
 .flex-form {
   align-items: flex-start;
   background-color: $tertiary;
@@ -150,6 +206,7 @@ tr {
   display: flex;/* Makes this div contain its floats */
   flex-flow: row wrap;
   justify-content: flex-start;
+  z-index: -1;
 
   a {
     color: $primary-dark;
@@ -165,9 +222,12 @@ tr {
 
   .flex-form-item {
     // background-color: #2B4C6F;
-    margin: 5px;
+    padding: 5px;
   }
 
+  .fill-row {
+    width: 100%;
+  }
   .resize {
     flex-grow: 2;
   }
@@ -176,6 +236,7 @@ tr {
     align-self: flex-end;
   }
 }
+
 
 .float-left {
   float: left;

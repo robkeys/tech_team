@@ -1,2 +1,28 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="items edit">
+
+  <div class="action back">
+    <%= link_to items_path do %>
+        <%= image_tag('left-arrow.png') %>
+        Return to List
+    <% end %>
+  </div>
+
+  <br>
+
+  <div class="relative-container">
+  <%= form_for @item do |f| %>
+    <% readable_only = true %>
+    <div class="flex-form">
+
+      <%= render(:partial => 'form', :locals => {:f => f, :readable_only => readable_only}) %>
+
+    </div>
+
+    <div class="action lock">
+      <%= display_lock(readable_only, edit_item_path(params[:id])) %>
+    </div>
+
+  <% end %>
+  </div>
+
+</div>
